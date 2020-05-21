@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:rate="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="CafeHouse.Views.AboutUsPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <StackLayout>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="48" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="200" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            HorizontalOptions="Start"
+                            Margin="16,0,0,0"
+                            Source="back.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding .}" />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Label
+                            Text="Abouts us"
+                            VerticalOptions="Center"
+                            HorizontalOptions="CenterAndExpand"
+                            TextColor="Black"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="0" />
+
+                    </Grid>
+                </StackLayout>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="160" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="100" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Grid.ColumnSpan="2"
+                        Aspect="AspectFill"
+                        Source="Location.png" />
+
+                </Grid>
+
+
+                <StackLayout>
+                    <Grid
+                        Margin="8,0,8,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="28" />
+                            <RowDefinition
+                                Height="28" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="200" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            HorizontalOptions="CenterAndExpand"
+                            Text="Cafe House Chinese Italian Cuinise"
+                            TextColor="#464646"
+                            FontAttributes="Bold"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="0"
+                            FontSize="21" />
+
+
+                        <StackLayout
+                            Margin="4,0,0,0"
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            Orientation="Horizontal"
+                            Spacing="4">
+
+                            <Label
+                                FontSize="12"
+                                VerticalOptions="Center"
+                                Text="999"
+                                FontAttributes="Bold" />
+
+                            <Label
+                                FontSize="12"
+                                VerticalOptions="Center"
+                                Text="Reviews"
+                                FontAttributes="Bold" />
+
+                            <rate:SfRating
+                                VerticalOptions="Center"
+                                ItemCount="5"
+                                ItemSize="12"
+                                Precision="Half"
+                                Value="4" 
+                                ReadOnly="True"
+                                ItemSpacing="2">
+                                <rate:SfRating.RatingSettings>
+                                    <rate:SfRatingSettings
+                                        RatedFill="#f0ba39"
+                                        RatedStroke="#f0ba39"
+                                        RatedStrokeWidth="2"
+                                        UnRatedStrokeWidth="2"
+                                        UnRatedStroke="#dcdcdd"
+                                        UnRatedFill="#dcdcdd" />
+                                </rate:SfRating.RatingSettings>
+                            </rate:SfRating>
+                        </StackLayout>
+
+                        <StackLayout
+                            Margin="0,0,8,0"
+                            HorizontalOptions="End"
+                            Orientation="Horizontal"
+                            Grid.Row="1"
+                            Grid.Column="1">
+
+                            <ffimage:CachedImage
+                                HeightRequest="24"
+                                WidthRequest="24"
+                                VerticalOptions="Center"
+                                Source="Checkin.png">
+                                <ffimage:CachedImage.Transformations>
+                                    <transform:CircleTransformation />
+                                </ffimage:CachedImage.Transformations>
+                            </ffimage:CachedImage>
+
+                            <ffimage:CachedImage
+                                HeightRequest="24"
+                                WidthRequest="24"
+                                VerticalOptions="Center"
+                                Source="Call.png">
+                                <ffimage:CachedImage.Transformations>
+                                    <transform:CircleTransformation />
+                                </ffimage:CachedImage.Transformations>
+                            </ffimage:CachedImage>
+
+                            <ffimage:CachedImage
+                                HeightRequest="24"
+                                WidthRequest="24"
+                                VerticalOptions="Center"
+                                Source="Web.png">
+                                <ffimage:CachedImage.Transformations>
+                                    <transform:CircleTransformation />
+                                </ffimage:CachedImage.Transformations>
+                            </ffimage:CachedImage>
+
+                            <ffimage:CachedImage
+                                HeightRequest="24"
+                                WidthRequest="24"
+                                VerticalOptions="Center"
+                                Source="Share.png">
+                                <ffimage:CachedImage.Transformations>
+                                    <transform:CircleTransformation />
+                                </ffimage:CachedImage.Transformations>
+                            </ffimage:CachedImage>
+
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+
+
+
+                <StackLayout
+                    Margin="12,8,12,8">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="24" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="180" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout
+                            Grid.ColumnSpan="2"
+                            Orientation="Horizontal"
+                            Grid.Row="0"
+                            Grid.Column="0">
+                            <Label
+                                HorizontalOptions="Start"
+                                VerticalOptions="Center"
+                                FontSize="14"
+                                TextColor="Black"
+                                Text="Mon - Sat (8:00AM - 11PM)," />
+
+                            <Label
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                TextColor="Black"
+                                FontSize="14"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                Text="Sat - Sun (11AM - 11PM)" />
+                        </StackLayout>
+
+
+
+
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            FontSize="10"
+                            HorizontalTextAlignment="Start"
+                            Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magma aliqua. Ui enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo conse-quat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." />
+
+
+                    </Grid>
+                </StackLayout>
+
+
+                <CollectionView
+                    Margin="4" 
+                    x:Name="scrollImage"
+                    HeightRequest="220">
+                    <CollectionView.ItemsSource>
+                        <x:Array
+                            Type="{x:Type x:String}">
+                            <x:String>Baboon</x:String>
+                            <x:String>Capuchin Monkey</x:String>
+                            <x:String>Blue Monkey</x:String>
+                            <x:String>Squirrel Monkey</x:String>
+                            <x:String>Golden Lion Tamarin</x:String>
+                            <x:String>Howler Monkey</x:String>
+                        </x:Array>
+                    </CollectionView.ItemsSource>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout
+                            Orientation="Vertical"
+                            Span="3" />
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout
+                                Margin="8"
+                                BackgroundColor="#f8f8f8">
+                                <ffimage:CachedImage
+                                    Source="dragonGray.png"
+                                    WidthRequest="108"
+                                    HeightRequest="108">
+                                    <ffimage:CachedImage.Transformations>
+                                        <transform:RoundedTransformation />
+                                    </ffimage:CachedImage.Transformations>
+                                </ffimage:CachedImage>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+      
+    </ContentPage.Content>
+</ContentPage>

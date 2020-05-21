@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:btnGradient="clr-namespace:CafeHouse.UI"
+             x:Class="CafeHouse.Views.ServicePage">
+    <ContentPage.Content>
+     
+        <StackLayout>
+
+            <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="36" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="150" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        Text="Services"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        TextColor="Black"
+                        Grid.ColumnSpan="2" />
+                    <Image
+                        Source="search.png"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        HorizontalOptions="End"
+                        Margin="0,0,16,0" />
+                </Grid>
+            </StackLayout>
+           
+
+            <ListView
+                RowHeight="240"
+                ItemsSource="{Binding Services}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Spacing="8">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition
+                                            Height="160" />
+                                        <RowDefinition
+                                            Height="48" />
+                                        <RowDefinition
+                                            Height="36" />
+                                    </Grid.RowDefinitions>
+                                </Grid>
+                                <Image
+                                    Grid.Row="0"
+                                    HeightRequest="160"
+                                    Aspect="AspectFill"
+                                    Source="{Binding Image}" />
+                                <Label
+                                    HorizontalOptions="CenterAndExpand"
+                                    TextColor="Black"
+                                    Grid.Row="1"
+                                    FontAttributes="Bold"
+                                    Text="{Binding Title}" />
+                                <btnGradient:GradientButton
+                                    Grid.Row="2"
+                                    HeightRequest="28"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Padding="8"
+                                    FontSize="10"
+                                    Text="Get Consulation"
+                                    TextColor="White"
+                                    CornerRadius="8"
+                                    GradientOrientation="Horizontal"
+                                    StartColor="#e029f9"
+                                    EndColor="#7637d7" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

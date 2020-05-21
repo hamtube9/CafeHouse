@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    BackgroundColor="White"
+    xmlns:btn="clr-namespace:CafeHouse.UI"
+    xmlns:labelGradien="clr-namespace:CafeHouse.UI"
+    x:Class="CafeHouse.Views.MenuPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout
+                Orientation="Vertical"
+                HeightRequest="36">
+                <Grid VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="36" />
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Text="Our Menu"
+                        TextColor="Black"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand" />
+
+                    <Image
+                        HeightRequest="16"
+                        WidthRequest="16"
+                        Margin="0,0,16,0"
+                        Source="search.png"
+                        VerticalOptions="Center"
+                        HorizontalOptions="EndAndExpand"
+                        Grid.Row="0"
+                         />
+                </Grid>
+           
+              
+            </StackLayout>
+
+            <StackLayout
+                HeightRequest="56">
+                <CollectionView
+                    BackgroundColor="#f8f8f8"
+                    ItemsLayout="HorizontalList"
+                    ItemsSource="{Binding Category}">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <btn:GradientButton
+                                    Margin="8"
+                                    HeightRequest="28"
+                                    VerticalOptions="CenterAndExpand"
+                                    StartColor="#dd3af9"
+                                    EndColor="#7640d4"
+                                    GradientOrientation="Horizontal"
+                                    WidthRequest="120"
+                                    Text="{Binding .}"
+                                    TextColor="White"
+                                    CornerRadius="12" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+
+
+      
+            <ListView RowHeight="100"
+                ItemsSource="{Binding Menus}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                                <Grid Padding="8">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition
+                                            Height="*" />
+                                        <RowDefinition
+                                            Height="*" />
+                                        <RowDefinition
+                                            Height="*" />
+                                    <RowDefinition
+                                        Height="*" />
+                                    <RowDefinition
+                                        Height="*" />
+                                </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition
+                                            Width="92" />
+                                        
+                                    </Grid.ColumnDefinitions>
+
+                                    <Frame
+                                        Margin="4"
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="5"
+                                        Padding="0"
+                                        CornerRadius="8">
+                                        <Image
+                                            HeightRequest="100"
+                                            Aspect="AspectFill"
+                                            WidthRequest="100"
+                                            Source="{Binding Image}" />
+                                    </Frame>
+
+
+                                <StackLayout Orientation="Vertical" Grid.Row="0"
+                                             Grid.Column="1"
+                                             Margin="4"
+                                             Grid.ColumnSpan="5">
+                                    <Label
+                                        FontSize="14"
+                                        VerticalOptions="Start"
+                                        Text="{Binding Title}"
+                                        TextColor="Black"
+                                        />
+
+
+
+                                    <labelGradien:GradientLabel
+                                        VerticalOptions="Start"
+                                        Text="{Binding Price}"
+                                        TextColor1="#dd3af9"
+                                        TextColor2="#7640d4" />
+
+                                    <Label
+                                        VerticalOptions="End"
+                                        Text="{Binding Des}"
+                                        FontSize="10"
+                                        />
+
+                                </StackLayout>
+                                  
+                                </Grid>
+                            
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

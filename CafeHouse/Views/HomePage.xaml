@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    BackgroundColor="#f9f9f9"
+    xmlns:labelGradien="clr-namespace:CafeHouse.UI"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:transform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    x:Class="CafeHouse.Views.HomePage">
+    <ContentPage.Content>
+        <ScrollView Padding="4" Orientation="Vertical">
+
+            <StackLayout
+                Orientation="Vertical"
+                VerticalOptions="Start">
+                <Label
+                    Text="Today's Special"
+                    FontSize="16"
+                    Padding="4"
+                    FontAttributes="Bold"
+                    TextColor="Black"/>
+
+
+                
+
+                <StackLayout HeightRequest="300">
+                    <CollectionView
+                        
+                        ItemsLayout="HorizontalList"
+                        ItemsSource="{Binding ListTest}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Frame
+                                        Margin="4"
+                                        Padding="0"
+                                        CornerRadius="12">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition
+                                                    Height="70" />
+                                                <RowDefinition
+                                                    Height="70" />
+                                                <RowDefinition
+                                                    Height="70" />
+                                                <RowDefinition
+                                                    Height="70" />
+                                            </Grid.RowDefinitions>
+
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition
+                                                    Width="75" />
+                                                <ColumnDefinition
+                                                    Width="75" />
+                                                <ColumnDefinition
+                                                    Width="75" />
+                                                <ColumnDefinition
+                                                    Width="75" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <ffimage:CachedImage
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="5"
+                                                Grid.Row="0"
+                                                Grid.RowSpan="4"
+                                                Aspect="AspectFill"
+                                                Source="{Binding Img}">
+                                                <ffimage:CachedImage.Transformations>
+                                                    <transform:RoundedTransformation
+                                                        Radius="18" />
+                                                </ffimage:CachedImage.Transformations>
+                                            </ffimage:CachedImage>
+
+
+
+                                            <StackLayout
+                                                Margin="12,0,0,8"
+                                                Orientation="Vertical"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="4"
+                                                VerticalOptions="Center"
+                                                Grid.Row="3">
+                                                <Label
+                                                    FontSize="12"
+                                                    TextColor="White"
+                                                    Text="{Binding Title}" />
+
+                                                <Label
+                                                    TextColor="White"
+                                                    FontSize="16"
+                                                    Text="{Binding Content}" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+                
+                
+                
+                <StackLayout
+                    Margin="4,12,4,0"
+                    Orientation="Vertical">
+
+                    <Grid Padding="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="24" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="250" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            TextColor="Black"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            FontSize="16"
+                            VerticalOptions="Center"
+                            HorizontalOptions="Start"
+                            Text="Recomemnded Items" />
+
+                        <Label
+                            Grid.Row="0"
+                            FontAttributes="Bold"
+                            TextColor="Black"
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="See all"
+                            TextDecorations="Underline" />
+                    </Grid>
+
+
+                    <CollectionView
+                        HeightRequest="120"
+                        ItemsLayout="HorizontalList"
+                        >
+                        <CollectionView.ItemsSource>
+                            <x:Array
+                                Type="{x:Type x:String}">
+                                <x:String>Baked </x:String>
+                                <x:String>monodroid</x:String>
+                                
+                            </x:Array>
+                        </CollectionView.ItemsSource>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                               
+                                    <Grid
+                                        Margin="4,0,8,0"
+                                        HorizontalOptions="Center"
+                                        VerticalOptions="Center">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition
+                                                Height="20" />
+                                            <RowDefinition
+                                                Height="20" />
+                                            <RowDefinition
+                                                Height="20" />
+                                            <RowDefinition
+                                                Height="20" />
+                                        
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition
+                                                Width="100" />
+                                        <ColumnDefinition
+                                            Width="140" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Frame
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="4"
+                                        Padding="0"
+                                        BorderColor="#ededed"
+                                        CornerRadius="8" />
+
+                                    <Frame
+                                            Margin="8"
+                                            HeightRequest="80"
+                                            WidthRequest="80"
+                                            Grid.Column="0"
+                                            Grid.Row="0"
+                                            Grid.RowSpan="4"
+                                            Padding="0"
+                                            CornerRadius="8">
+                                            <Image
+                                                Aspect="AspectFill"
+                                                Source="dragonGray.png" />
+                                        </Frame>
+
+                                        <StackLayout
+                                            Padding="0,0,4,0"
+                                            HorizontalOptions="Center"
+                                            Orientation="Vertical"
+                                            VerticalOptions="Center"
+                                            Grid.Row="0"
+                                            Grid.RowSpan="4"
+                                            Grid.Column="1">
+                                            <Label
+                                                FontSize="12"
+                                            Text="Brown rice bibimbap bowls."
+                                                FontAttributes="Bold"/>
+                                            <labelGradien:GradientLabel
+                                                Text="$10.00"
+                                                FontSize="12"
+                                                FontAttributes="Bold"
+                                                TextColor1="#dd3af9"
+                                                TextColor2="#7640d4" />
+                                            <Label
+                                                FontSize="8"
+                                                Text="This a very delicious Chinese dish with a spicey taste filled with vegetable" />
+
+                                        </StackLayout>
+                                    </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </StackLayout>
+
+
+                <StackLayout
+                    Margin="4,8,4,0"
+                    Orientation="Vertical">
+
+                    <Grid Padding="4">
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="24" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="250" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            TextColor="Black"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            FontSize="16"
+                            HorizontalOptions="Start"
+                            Text="Recomemnded Items" />
+
+                        <Label
+                            Grid.Row="0"
+                            FontAttributes="Bold"
+                            TextColor="Black"
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            Text="See all"
+                            TextDecorations="Underline" />
+                    </Grid>
+
+
+                    <CollectionView
+                        HeightRequest="120"
+                        ItemsLayout="HorizontalList"
+                        >
+                        <CollectionView.ItemsSource>
+                            <x:Array
+                                Type="{x:Type x:String}">
+                                <x:String>Baked</x:String>
+                                <x:String>monodroid</x:String>
+
+                            </x:Array>
+                        </CollectionView.ItemsSource>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+
+                                <Grid
+                                    Margin="4,0,8,0"
+                                    HorizontalOptions="CenterAndExpand"
+                                    >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition
+                                            Height="20" />
+                                        <RowDefinition
+                                            Height="20" />
+                                        <RowDefinition
+                                            Height="20" />
+                                        <RowDefinition
+                                            Height="20" />
+
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition
+                                            Width="100" />
+                                        <ColumnDefinition
+                                            Width="140" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Frame
+                                        Grid.Column="0"
+                                        Grid.ColumnSpan="2"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="4"
+                                        Padding="0"
+                                        BorderColor="#ededed"
+                                        CornerRadius="8" />
+
+                                    <Frame
+                                        Margin="8"
+                                        HeightRequest="80"
+                                        WidthRequest="80"
+                                        Grid.Column="0"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="4"
+                                        Padding="0"
+                                        CornerRadius="8">
+                                        <Image
+                                            Aspect="AspectFill"
+                                            Source="dragonGray.png" />
+                                    </Frame>
+
+                                    <StackLayout
+                                        Padding="0,0,4,0"
+                                        HorizontalOptions="Center"
+                                        Orientation="Vertical"
+                                        VerticalOptions="Center"
+                                        Grid.Row="0"
+                                        Grid.RowSpan="4"
+                                        Grid.Column="1">
+                                        <Label
+                                            FontSize="12"
+                                            Text="Venison steak with blackberry and sloe gin."
+                                            FontAttributes="Bold" />
+                                        <labelGradien:GradientLabel
+                                            Text="$8.99"
+                                            FontSize="12"
+                                            FontAttributes="Bold"
+                                            TextColor1="#dd3af9"
+                                            TextColor2="#7640d4" />
+                                        <Label
+                                            FontSize="8"
+                                            Text="This a very delicious Chinese dish with a spicey taste filled with vegetable" />
+
+                                    </StackLayout>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </StackLayout>
+
+
+            </StackLayout>
+
+
+
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

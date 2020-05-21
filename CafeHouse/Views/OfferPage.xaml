@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Name="OfferPage"
+             xmlns:background="clr-namespace:MagicGradients;assembly=MagicGradients"
+             x:Class="CafeHouse.Views.OfferPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="48" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="200" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        HorizontalOptions="Start"
+                        Margin="16,0,0,0"
+                        Source="back.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={Reference OfferPage }, Path=BindingContext.BackPopupCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+
+                    <Label
+                        Text="Offers"
+                        VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand"
+                        TextColor="Black"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0" />
+
+                </Grid>
+            </StackLayout>
+
+            <CollectionView
+                ItemsSource="{Binding Offers}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="50" />
+                                    <RowDefinition
+                                        Height="70" />
+                                    <RowDefinition
+                                        Height="20" /> 
+                                    <RowDefinition
+                                        Height="60" />
+                                   
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="160" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Grid.ColumnSpan="2"
+                                    Grid.RowSpan="4"
+                                    Source="{Binding Image}"
+                                    Aspect="AspectFill" />
+
+                                <background:GradientView Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2" Opacity="0.5">
+                                    <background:LinearGradient>
+                                        <background:GradientStop
+                                            Color="#ffffff" Offset="0"/>
+                                        <background:GradientStop
+                                            Color="#000000" Offset="1"/>
+                                        
+                                    </background:LinearGradient>
+                                </background:GradientView>
+                                
+                                <StackLayout
+                                    Padding="12,0,4,0"
+                                    Grid.Column="0"
+                                    VerticalOptions="EndAndExpand"
+                                    Grid.Row="3"
+                                    Grid.ColumnSpan="2"
+                                   >
+                                    <Label
+                                        FontSize="20"
+                                        TextColor="White"
+                                        Text="{Binding NameOffer}" />
+
+                                    <StackLayout Orientation="Horizontal" Spacing="4" Margin="0,0,0,8">
+
+                                        <Label
+                                            FontSize="12"
+                                            TextColor="#d0d0d0"
+                                            Text="Valid till : " />
+
+                                        <Label
+                                            FontSize="12"
+                                            TextColor="#d0d0d0"
+                                            Text="{Binding DateTime}" />
+                                    </StackLayout>
+                                  
+
+
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

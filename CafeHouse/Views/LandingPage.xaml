@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    BackgroundImageSource="bglanding.png"
+    xmlns:btnGradient="clr-namespace:CafeHouse.UI"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:transform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    x:Class="CafeHouse.Views.LandingPage">
+
+    <StackLayout>
+
+   
+        
+        <StackLayout
+            Orientation="Vertical"
+            HorizontalOptions="Center"
+            VerticalOptions="CenterAndExpand">
+
+
+        
+            <ffimage:CachedImage
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                Source="landinglogo.png"
+                HeightRequest="140"
+                WidthRequest="140">
+
+                <ffimage:CachedImage.Transformations>
+                    <transform:CircleTransformation />
+                </ffimage:CachedImage.Transformations>
+            </ffimage:CachedImage>
+
+
+            <Label
+                Margin="24"
+                TextColor="White"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                FontSize="48"
+                Text="Cafe House" />
+
+
+            <btnGradient:GradientButton
+                Margin="0,48,0,0"
+                Text="Login"
+                TextColor="White"
+                StartColor="#dd3af9"
+                EndColor="#7640d4"
+                Clicked="GradientButton_Clicked"
+                HeightRequest="52"
+                CornerRadius="2"
+                GradientOrientation="Horizontal"
+                WidthRequest="280" />
+
+            <btnGradient:GradientButton
+                HeightRequest="52"
+                Margin="0,20,0,0"
+                Text="Register"
+                Clicked="OnRegister_Clicked"
+                TextColor="White"
+                StartColor="#dd3af9"
+                EndColor="#7640d4"
+                CornerRadius="2"
+                GradientOrientation="Horizontal"
+                WidthRequest="280" />
+
+            <Label
+                Margin="0,24,0,0"
+                VerticalOptions="Center"
+                HorizontalOptions="CenterAndExpand"
+                Text="Direct Enter"
+                TextColor="White"
+                FontSize="20" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

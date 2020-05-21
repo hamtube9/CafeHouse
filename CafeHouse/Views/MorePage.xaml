@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             x:Class="CafeHouse.Views.MorePage"
+             x:Name="root">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label
+                TextColor="Black"
+                FontSize="20"
+                VerticalOptions="Center" HorizontalOptions="Center"
+                Padding="8"
+                FontAttributes="Bold"
+                Text="More" />
+            <CollectionView
+                ItemsSource="{Binding Mores}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        Orientation="Vertical"
+                        Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                            <StackLayout
+                                Margin="8"
+                                Spacing="8">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={Reference root}, Path=BindingContext.MoreItemCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </StackLayout.GestureRecognizers>
+                            <ffimage:CachedImage
+                                VerticalOptions="Center"
+                                HeightRequest="80"
+                                HorizontalOptions="Center"
+                                WidthRequest="80"
+                                Source="{Binding Image}">
+                                <ffimage:CachedImage.Transformations>
+                                    <transform:CircleTransformation />
+                                </ffimage:CachedImage.Transformations>
+                            </ffimage:CachedImage>
+
+                                <Label
+                                    x:Name="lblTitle"
+                                    TextColor="Black"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center"
+                                    Text="{Binding Title}" />
+                            </StackLayout>
+                     
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
