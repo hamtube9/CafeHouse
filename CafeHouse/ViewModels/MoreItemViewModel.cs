@@ -1,5 +1,7 @@
 ﻿using CafeHouse.Models;
 using CafeHouse.Views;
+using Prism.Mvvm;
+using Prism.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,53 +11,34 @@ using Xamarin.Forms;
 
 namespace CafeHouse.ViewModels
 {
-    class MoreItemViewModel : BindableObject
-    {
+  public  class MoreItemViewModel : TabbedViewModelBase
+    { 
         private ObservableCollection<MoreItem> _mores;
-        public ObservableCollection<MoreItem> Mores { get { return _mores; } set { _mores = value; OnPropertyChanged(); } }
+        private readonly INavigationService navigationService;
 
-        public ICommand MoreItemCommand => new Command<MoreItem>(SelectedPageItem);
+        public ObservableCollection<MoreItem> Mores { get { return _mores; } set { SetProperty(ref _mores, value); } }
 
-        private void SelectedPageItem(MoreItem obj)
+        public ICommand MoreItemCommand => new Prism.Commands.DelegateCommand<MoreItem>(SelectedPageItem);
+
+      
+
+        public MoreItemViewModel(INavigationService _navigationService)
         {
-            var push = Application.Current.MainPage.Navigation;
-            if (obj.Title == "About")
-            {
-                push.PushAsync(new AboutUsPage());
-            }
-            else if (obj.Title == "Gallery")
-            {
-                push.PushAsync(new GalleryPage());
-            }
-            else if (obj.Title == "Reviews")
-            {
-                push.PushAsync(new ReviewsPage());
-            }
-            else if (obj.Title == "Offers")
-            {
-                push.PushAsync(new OfferPage());
-            }
-            else if (obj.Title == "Our Staff")
-            {
-                push.PushAsync(new OurStaffPage());
-            }
-            else if (obj.Title == "Reservations")
-            {
+            navigationService = _navigationService;
 
-            }
-            else if (obj.Title == "Profile")
-            {
-
-            }
-            else if (obj.Title == "Settings")
-            {
-
-            }
+            this.navigationService = navigationService;
         }
 
-        public MoreItemViewModel()
+        public override void CurrentTabbedChanged()
+        {
+            if (IsActive) GetData();
+
+        }
+
+        private void GetData()
         {
             Mores = new ObservableCollection<MoreItem>();
+
             Mores.Add(new MoreItem()
             {
                 Image = "About.png",
@@ -101,6 +84,36 @@ namespace CafeHouse.ViewModels
         }
 
 
+        private void SelectedPageItem(MoreItem obj)
+        {
+            var title = obj.Title;
+            switch (title)
+            {
+                case "About":
+                    navigationService.NavigateAsync(Routes.AboutUs);
+                    break;
+                case "Gallery":
+                    navigationService.NavigateAsync(Routes.Gallery);
+                    break;
+                case "Reviews":
+                    navigationService.NavigateAsync(Routes.Reviews);
+                    break;
+                case "Offers":
+                    navigationService.NavigateAsync(Routes.Offers);
+                    break;
+                case "Our Staff":
+                    navigationService.NavigateAsync(Routes.Staffs);
+                    break;
+                case "Reservations":
+                    break;
+                case "Profile":
+                    break;
+                case "Settings":
+                    break;
 
+
+
+            }
+        }
     }
 }

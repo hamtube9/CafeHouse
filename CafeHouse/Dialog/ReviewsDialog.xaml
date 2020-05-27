@@ -1,0 +1,200 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Frame
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    HorizontalOptions="Center"
+    CornerRadius="12"
+    Padding="0"
+    WidthRequest="260"
+    BackgroundColor="White"
+    x:Name="reviewDialog"
+    xmlns:btnGradien="clr-namespace:CafeHouse.UI"
+    xmlns:ratingbar="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+    x:Class="CafeHouse.Dialog.ReviewsDialog"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:transform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:entry="clr-namespace:CafeHouse.UI">
+
+    <StackLayout>
+        <StackLayout Padding="8,0,0,0">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="36" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition
+                        Width="120" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Column="0"
+                    Text=" Reviews "
+                    FontSize="20"
+                    Padding="4"
+                    TextColor="Black"
+                    HorizontalOptions="Center" />
+
+                <Label
+                    VerticalOptions="Center"
+                    Text="cancel"
+                    TextColor="OrangeRed"
+                    TextDecorations="Underline">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Source={Reference reviewDialog},Path=BindingContext.CloseCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+            
+        </StackLayout>
+       
+        <entry:CustomEntry
+            BorderWidth="1"
+            CornerRadius="12"
+            Margin="8,0,8,0"
+            Text="{Binding Content}"
+            Placeholder="Comment" />
+
+        <StackLayout
+            Orientation="Horizontal">
+            <Label
+                Padding="8"
+                Text="Rate : " />
+            <ratingbar:SfRating
+                ItemCount="5"
+                Value="{Binding Rate}"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                ItemSize="18"
+                ItemSpacing="6"
+                Precision="Half">
+                <ratingbar:SfRating.RatingSettings>
+                    <ratingbar:SfRatingSettings
+                        RatedFill="#f0ba39"
+                        RatedStroke="#f0ba39"
+                        RatedStrokeWidth="2"
+                        UnRatedStrokeWidth="2"
+                        UnRatedStroke="#cfcfcf"
+                        UnRatedFill="White" />
+                </ratingbar:SfRating.RatingSettings>
+            </ratingbar:SfRating>
+        </StackLayout>
+
+        <StackLayout
+            Padding="8,0,0,0"
+            Orientation="Horizontal">
+
+
+            <CollectionView
+                IsVisible="False"
+                VerticalOptions="Center"
+                HeightRequest="80"
+                ItemsSource="{Binding ListImage}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        Orientation="Horizontal"
+                        HorizontalItemSpacing="4" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <Grid ColumnSpacing="8">
+                            <Grid.RowDefinitions>
+                                <RowDefinition
+                                    Height="80" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="80" />
+                            </Grid.ColumnDefinitions>
+
+                            <ffimage:CachedImage
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                WidthRequest="80"
+                                HeightRequest="80"
+                                Source="{Binding .}"
+                                Aspect="AspectFill"
+                                VerticalOptions="Center">
+                                <ffimage:CachedImage.Transformations>
+                                    <transform:RoundedTransformation />
+                                </ffimage:CachedImage.Transformations>
+                            </ffimage:CachedImage>
+
+                            <Image
+                                Margin="0,4,4,0"
+                                VerticalOptions="Start"
+                                HorizontalOptions="End"
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                HeightRequest="16"
+                                WidthRequest="16"
+                                Source="close.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={Reference reviewDialog},Path=BindingContext.DeleteImageCommand}" 
+                                        CommandParameter="{Binding .}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+
+                        </Grid>
+                      
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.Triggers>
+                    <DataTrigger TargetType="CollectionView" Binding="{Binding IsVisible}" Value="True">
+                        <Setter
+                            Property="IsVisible"
+                            Value="True" />
+                    </DataTrigger>
+                </CollectionView.Triggers>
+            </CollectionView>
+
+            <Image
+                Source="addimage.png"
+                HeightRequest="80"
+                WidthRequest="80"
+                VerticalOptions="Center">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer
+                        Command="{Binding Source={Reference reviewDialog},Path=BindingContext.AddImageCommand}" />
+                </Image.GestureRecognizers>
+                <Image.Triggers>
+                    <DataTrigger
+                        TargetType="Image"
+                        Binding="{Binding IsInvisible}"
+                        Value="True">
+                        <Setter
+                            Property="IsVisible"
+                            Value="False" />
+                    </DataTrigger>
+                </Image.Triggers>
+            </Image>
+
+
+
+
+
+        </StackLayout>
+
+        <btnGradien:GradientButton
+            Text="Add Review"
+            TextColor="White"
+            StartColor="#e838fb"
+            Command="{Binding Source={Reference reviewDialog},Path=BindingContext.AddReviewCommand}"
+            EndColor="#6b42cf"
+            CornerRadius="12"
+            Margin="4" />
+
+
+    </StackLayout>
+  
+
+</Frame>

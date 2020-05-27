@@ -112,6 +112,7 @@
                     Margin="0,16,0,0">
                     <Frame
                         BackgroundColor="#3b5999"
+                        HasShadow="False"
                         Padding="12"
                         HorizontalOptions="CenterAndExpand"
                         VerticalOptions="CenterAndExpand"
@@ -134,6 +135,7 @@
                     </Frame>
 
                     <Frame
+                        HasShadow="False"
                         BackgroundColor="#ff3e3e"
                         Margin="5,0,0,0"
                         Padding="12"

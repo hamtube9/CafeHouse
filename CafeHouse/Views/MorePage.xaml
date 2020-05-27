@@ -26,24 +26,30 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
+                        <Frame
+                            Padding="24"
+                            BorderColor="#cccccc">
                             <StackLayout
-                                Margin="8"
-                                Spacing="8">
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer
-                                    Command="{Binding Source={Reference root}, Path=BindingContext.MoreItemCommand}"
-                                    CommandParameter="{Binding .}" />
-                            </StackLayout.GestureRecognizers>
-                            <ffimage:CachedImage
-                                VerticalOptions="Center"
-                                HeightRequest="80"
-                                HorizontalOptions="Center"
-                                WidthRequest="80"
-                                Source="{Binding Image}">
-                                <ffimage:CachedImage.Transformations>
-                                    <transform:CircleTransformation />
-                                </ffimage:CachedImage.Transformations>
-                            </ffimage:CachedImage>
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="Center">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={Reference root}, Path=BindingContext.MoreItemCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </StackLayout.GestureRecognizers>
+
+
+
+                                <ffimage:CachedImage
+                                    VerticalOptions="Center"
+                                    HeightRequest="80"
+                                    HorizontalOptions="Center"
+                                    WidthRequest="80"
+                                    Source="{Binding Image}">
+                                    <ffimage:CachedImage.Transformations>
+                                        <transform:CircleTransformation />
+                                    </ffimage:CachedImage.Transformations>
+                                </ffimage:CachedImage>
 
                                 <Label
                                     x:Name="lblTitle"
@@ -52,7 +58,9 @@
                                     HorizontalOptions="Center"
                                     Text="{Binding Title}" />
                             </StackLayout>
-                     
+                        </Frame>
+
+
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

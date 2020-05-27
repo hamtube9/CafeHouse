@@ -4,7 +4,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Name="GalleryPage"
+    x:Name="gallery"
+             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:transfrom="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="CafeHouse.Views.GalleryPage">
     <ContentPage.Content>
         <StackLayout>
@@ -28,7 +30,9 @@
                         Source="back.png">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
-                                Command="{Binding . } />
+                                Command="{Binding GoBack}"
+                                
+                           />
                         </Image.GestureRecognizers>
                     </Image>
 
@@ -46,41 +50,25 @@
             </StackLayout>
 
 
-            <CollectionView>
-                <CollectionView.ItemsSource>
-                    <x:Array
-                        Type="{x:Type x:String}">
-                        <x:String>Baboon</x:String>
-                        <x:String>Capuchin Monkey</x:String>
-                        <x:String>Blue Monkey</x:String>
-                        <x:String>Squirrel Monkey</x:String>
-                        <x:String>Golden Lion Tamarin</x:String>
-                        <x:String>Howler Monkey</x:String>
-                        <x:String>Japanese Macaque</x:String>
-                        <x:String>Baboon</x:String>
-                        <x:String>Capuchin Monkey</x:String>
-                        <x:String>Blue Monkey</x:String>
-                        <x:String>Squirrel Monkey</x:String>
-                        <x:String>Golden Lion Tamarin</x:String>
-                        <x:String>Howler Monkey</x:String>
-                        <x:String>Japanese Macaque</x:String>
-                        <x:String>Baboon</x:String>
-                        <x:String>Capuchin Monkey</x:String>
-                        <x:String>Blue Monkey</x:String>
-                        <x:String>Squirrel Monkey</x:String>
-                        <x:String>Golden Lion Tamarin</x:String>
-                        <x:String>Howler Monkey</x:String>
-                        <x:String>Japanese Macaque</x:String>
-                    </x:Array>
-                </CollectionView.ItemsSource>
+
+            <CollectionView
+                 ItemsSource="{Binding ListGallery}">
+
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout
                         Orientation="Vertical"
                         Span="2" />
                 </CollectionView.ItemsLayout>
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout >
+                        <StackLayout
+                            BindingContext="{Binding Data}">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={Reference gallery},Path=BindingContext.PickImageCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </StackLayout.GestureRecognizers>
 
                             <Grid>
                                 <Grid.RowDefinitions>
@@ -96,15 +84,19 @@
                                     Margin="1"
                                     Aspect="AspectFill"
                                     Grid.Column="0"
-                                     Grid.Row="0"
-                                    Source="dragonGray.png" />
+                                    Grid.Row="0"
+                                    Source="{Binding Url}">
+
+                                </Image>
+
 
                             </Grid>
-                            
+
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

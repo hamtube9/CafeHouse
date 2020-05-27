@@ -1,20 +1,38 @@
 ﻿using CafeHouse.Models;
+using Prism.Commands;
+using Prism.Navigation;
+using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace CafeHouse.ViewModels
 {
-    class ReviewsViewModel : BindableObject
-
+    class ReviewsViewModel : ViewModelBase, INavigatedAware
     {
+        IDialogService dialog;
+        INavigationService navigation;
         private ObservableCollection<Reviews> _reviews;
-        public ObservableCollection<Reviews> Reviews { get { return _reviews; } set { _reviews = value; OnPropertyChanged("Reviews"); } }
+        public ObservableCollection<Reviews> Reviews { get { return _reviews; } set { SetProperty(ref _reviews, value); } }
 
-        public ReviewsViewModel()
+
+        public ICommand GoBack => new DelegateCommand(BackAsync);
+
+        public ICommand OnShowDialog => new DelegateCommand(ShowDialog);
+
+ 
+
+
+
+        public ReviewsViewModel(INavigationService _service, IDialogService _dialog)
         {
+            dialog = _dialog;
+            navigation = _service;
+
             Reviews = new ObservableCollection<Reviews>();
             Reviews.Add(new Reviews()
             {
@@ -23,7 +41,7 @@ namespace CafeHouse.ViewModels
                 ListImage = null,
                 NameUser = "Cris Stankovic",
                 Rate = 4
-            }) ;
+            });
 
             var listImage = new List<ImageReview>();
             listImage.Add(new ImageReview()
@@ -58,5 +76,35 @@ namespace CafeHouse.ViewModels
                 Rate = 4.5
             });
         }
+
+        private void BackAsync()
+        {
+            navigation.GoBackAsync();
+        }
+
+        private void ShowDialog()
+        {
+                  dialog.ShowDialog("ReviewsDialog",(result)=> {
+                     var reviewsItem= result.Parameters.GetValue<Reviews>("reviews");
+                      if(reviewsItem != null)
+                      {
+                          Reviews.Insert(0, reviewsItem);
+                      }
+                  });
+        }
+
+    
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+  
+        }
+
+
+      
     }
 }

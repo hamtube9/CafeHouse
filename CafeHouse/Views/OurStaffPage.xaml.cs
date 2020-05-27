@@ -17,7 +17,22 @@ namespace CafeHouse.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            BindingContext = new StaffViewModel();
+        }
+
+        void Handle_Text_Changed(Object sender, TextChangedEventArgs e)
+        {
+            var _container = BindingContext as StaffViewModel;
+            ListStaff.BeginRefresh();
+
+            if (string.IsNullOrWhiteSpace(e.NewTextValue))
+            {
+                ListStaff.ItemsSource = _container.Staffs;
+            }
+            else
+            {
+                ListStaff.ItemsSource = _container.Staffs.Where(staff => staff.Name.ToLower().Contains(e.NewTextValue));
+            }
+            ListStaff.EndRefresh();
         }
     }
 }

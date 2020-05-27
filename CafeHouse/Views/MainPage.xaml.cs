@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
+﻿using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using Xamarin.Forms;
+using System.ComponentModel;
 
 namespace CafeHouse
 {
@@ -15,11 +10,15 @@ namespace CafeHouse
     [DesignTimeVisible(false)]
     public partial class MainPage : Xamarin.Forms.TabbedPage
     {
+        [System.Obsolete]
         public MainPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
+           
+            //On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom)
+            //       .SetBarItemColor(Color.Black)
+            //       .SetBarSelectedItemColor(Color.Red);
             this.On<Xamarin.Forms.PlatformConfiguration.Android>().SetIsSwipePagingEnabled(false);
 
         }

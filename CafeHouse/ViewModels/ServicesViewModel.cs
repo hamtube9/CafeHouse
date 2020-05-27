@@ -7,10 +7,10 @@ using Xamarin.Forms;
 
 namespace CafeHouse.ViewModels
 {
-    class ServicesViewModel :BindableObject
+  public  class ServicesViewModel :TabbedViewModelBase
     {
         private ObservableCollection<Service> _services;
-        public  ObservableCollection<Service> Services { get { return _services; } set { _services = value; OnPropertyChanged(); } }
+        public  ObservableCollection<Service> Services { get { return _services; } set { SetProperty(ref _services , value); } }
 
         public ServicesViewModel()
         {

@@ -1,27 +1,89 @@
 ﻿using CafeHouse.Models;
+using Prism.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace CafeHouse.ViewModels
 {
-    class ReservationViewModel : BindableObject
+  public  class ReservationViewModel : TabbedViewModelBase
     {
         private ObservableCollection<Datetime> _datetimes;
-        public ObservableCollection<Datetime> Datetimes { get { return _datetimes; } set { _datetimes = value; OnPropertyChanged(); } }
+        public ObservableCollection<Datetime> Datetimes { get { return _datetimes; } set { SetProperty(ref _datetimes , value);  } }
 
         private ObservableCollection<string> _hours;
-        public ObservableCollection<string> Hours { get { return _hours; } set { _hours = value; OnPropertyChanged(); } }
+        public ObservableCollection<string> Hours { get { return _hours; } set {  SetProperty(ref _hours, value);  } }
 
+
+        private ObservableCollection<Table> _bookings;
+        public ObservableCollection<Table> Bookings { get { return _bookings; } set { SetProperty(ref _bookings, value); } }
+
+        public ICommand BookingCommand => new DelegateCommand(BookingSuccessCommand);
+
+
+        public ICommand PickDayCommand => new DelegateCommand<Datetime>(PickDay);
+
+        public ICommand SelectedTableCommand => new DelegateCommand<Table>(SelectedTable);
+
+        private void SelectedTable(Table obj)
+        {
+            if (obj == null || obj.IsSelected)
+            {
+                return;
+            }
+
+            var table = Bookings.FirstOrDefault(d => d.IsSelected);
+            if (table != null)
+            {
+                table.IsSelected = false;
+            }
+
+            obj.IsSelected = true;
+        }
+
+        private void PickDay(Datetime obj)
+        {
+            if (obj.IsSelected)
+            {
+                return;
+            }
+
+            var datetimeSelected = Datetimes.Where(d => d.IsSelected).FirstOrDefault();
+            if (datetimeSelected != null)
+            {
+                datetimeSelected.IsSelected = false;
+            }
+            obj.IsSelected = true;
+
+        }
+
+        private void BookingSuccessCommand()
+        {
+            var push = Application.Current.MainPage.Navigation;
+            push.PushAsync(new CafeHouse.Views.BookingPage());
+        }
+      
 
         public ReservationViewModel()
         {
             Datetimes = new ObservableCollection<Datetime>();
+          
+        }
+
+        public override void CurrentTabbedChanged()
+        {
+            if (IsActive) GetData();
+        }
+
+        private void GetData()
+        {
             Datetimes.Add(new Datetime()
             {
-                DateOfMonth ="1",
+                DateOfMonth = "1",
                 DayOfWeek = "Mon"
             });
 
@@ -129,6 +191,42 @@ namespace CafeHouse.ViewModels
             Hours.Add("10:00 PM");
             Hours.Add("11:00 PM");
             Hours.Add("00:00 PM");
+
+            Bookings = new ObservableCollection<Table>();
+            Bookings.Add(new Table()
+            {
+                ImageTable = "dragonGray.png",
+                People = 1
+            });
+            Bookings.Add(new Table()
+            {
+                ImageTable = "table2.png",
+                People = 2
+            });
+
+            Bookings.Add(new Table()
+            {
+                ImageTable = "table2.png",
+                People = 3
+            });
+
+            Bookings.Add(new Table()
+            {
+                ImageTable = "dragonGray.png",
+                People = 4
+            });
+
+            Bookings.Add(new Table()
+            {
+                ImageTable = "table2.png",
+                People = 5
+            });
+
+            Bookings.Add(new Table()
+            {
+                ImageTable = "table4.png",
+                People = 6
+            });
 
         }
     }

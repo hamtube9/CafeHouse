@@ -16,7 +16,8 @@ namespace CafeHouse.Views
         public ReservationPage()
         {
             InitializeComponent();
-            BindingContext = new ReservationViewModel();
         }
+
+       
     }
 }

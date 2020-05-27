@@ -10,35 +10,8 @@
              xmlns:transform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              x:Class="CafeHouse.Views.ReviewsPage">
     <ContentPage.Content>
-        <!--<StackLayout
-            Orientation="Vertical"
-            VerticalOptions="FillAndExpand">
-            <CollectionView
-                VerticalOptions="FillAndExpand"
-                HorizontalOptions="FillAndExpand"
-                ItemsSource="{Binding ListImage}">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout
-                        Orientation="Horizontal"
-                        Span="3" />
-                </CollectionView.ItemsLayout>
-
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <ffimage:CachedImage
-                                Source="{Binding ImageContent}"
-                                HeightRequest="100"
-                                VerticalOptions="CenterAndExpand">
-                                <ffimage:CachedImage.Transformations>
-                                    <transform:RoundedTransformation />
-                                </ffimage:CachedImage.Transformations>
-                            </ffimage:CachedImage>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>-->
+     
+        
         <StackLayout>
             <StackLayout>
 
@@ -54,13 +27,14 @@
 
                     <Image
                         Grid.Column="0"
+
                         Grid.Row="0"
                         HorizontalOptions="Start"
                         Margin="16,0,0,0"
                         Source="back.png">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer
-                                Command="{Binding .}" />
+                                Command="{Binding GoBack}" />
                         </Image.GestureRecognizers>
                     </Image>
 
@@ -109,15 +83,20 @@
                             </rating:SfRating.RatingSettings>
                         </rating:SfRating>
 
-                        <labelGradient:GradientLabel
+                    <labelGradient:GradientLabel
                         VerticalOptions="Center"
                         Text="Add Your Review"
-                            Grid.Column="1"
-                            Grid.Row="0"
-                            FontSize="18"
-                            HorizontalOptions="End"
-                            TextColor1="#de3af9"
-                            TextColor2="#7740d4" />
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        FontSize="18"
+                        HorizontalOptions="End"
+                        TextColor1="#de3af9"
+                        TextColor2="#7740d4">
+                        <labelGradient:GradientLabel.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding OnShowDialog}" />
+                        </labelGradient:GradientLabel.GestureRecognizers>
+                    </labelGradient:GradientLabel>
                  
 
                 </Grid>

@@ -9,10 +9,10 @@ using Xamarin.Forms;
 
 namespace CafeHouse.ViewModels
 {
-    class StaffViewModel : BindableObject
+    class StaffViewModel : ViewModelBase
     {
         private ObservableCollection<Staff> _staffs;
-        public ObservableCollection<Staff> Staffs { get { return _staffs; } set { _staffs = value; OnPropertyChanged(); } }
+        public ObservableCollection<Staff> Staffs { get { return _staffs; } set { SetProperty(ref _staffs , value); } }
 
         public ICommand BackPopupCommand => new Command(BackPopup);
 

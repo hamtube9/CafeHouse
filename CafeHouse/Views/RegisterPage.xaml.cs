@@ -16,12 +16,7 @@ namespace CafeHouse.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            var tapped =new TapGestureRecognizer();
-            tapped.Tapped += (s, e) =>
-            {
-                Navigation.PushAsync(new LoginPage());
-            };
-            lblLogin.GestureRecognizers.Add(tapped);
+       
         }
     }
 }

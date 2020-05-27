@@ -11,6 +11,7 @@
     <ContentPage.Content>
         <StackLayout>
 
+            
             <StackLayout>
 
                 <Grid>
@@ -49,8 +50,12 @@
                 </Grid>
             </StackLayout>
 
+            <SearchBar
+                TextChanged="Handle_Text_Changed" />
             <ListView
                 RowHeight="56"
+                x:Name="ListStaff"
+                SeparatorVisibility="None"
                 ItemsSource="{Binding Staffs}">
                 <ListView.ItemTemplate>
                     <DataTemplate>

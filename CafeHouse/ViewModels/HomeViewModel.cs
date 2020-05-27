@@ -5,28 +5,29 @@ using Xamarin.Forms;
 
 namespace CafeHouse.ViewModels
 {
-    class TestViewModel : BindableObject
+ public   class HomeViewModel : TabbedViewModelBase
     {
 
 
-        private ObservableCollection<ModelTest> listTest { get; set; }
+        private ObservableCollection<ModelTest> listTest;
         public ObservableCollection<ModelTest> ListTest
         {
-            get { return listTest; }
-            set { listTest = value; }
+            get { return listTest ?? new ObservableCollection<ModelTest>(); }
+            set { SetProperty(ref listTest , value) ; }
         }
        public List<ModelTest> List = new List<ModelTest>();
       
-
-
-
-        public TestViewModel()
+        public HomeViewModel()
         {
             ListTest = new ObservableCollection<ModelTest>();
 
+        
+           
 
-
-
+        }
+         
+        private void GetData()
+        {
             List.Add(new ModelTest()
             {
                 Img = "dragonGray.png",
@@ -56,11 +57,11 @@ namespace CafeHouse.ViewModels
             });
 
             ListTest = new ObservableCollection<ModelTest>(List);
+        }
 
-
-
-
-
+        public override void CurrentTabbedChanged()
+        {
+           if(IsActive) GetData(); 
         }
     }
     

@@ -6,16 +6,27 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     xmlns:view="clr-namespace:CafeHouse.Views"
-    x:Class="CafeHouse.MainPage">
-    <view:HomePage
-        Title="Home" IconImageSource="ichome.png" ></view:HomePage>
-    <view:MenuPage
-        Title="Menu" IconImageSource="icmenu.png"></view:MenuPage>
-    <view:ReservationPage
-        Title="Reservation" IconImageSource="ictable.png"></view:ReservationPage>
+    x:Class="CafeHouse.MainPage"
+    xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+    android:TabbedPage.ToolbarPlacement="Bottom">
+    <TabbedPage.Children>
+        <view:HomePage
+            Title="Home"
+            IconImageSource="ichome.png"></view:HomePage>
+        <view:MenuPage
+            Title="Menu"
+            IconImageSource="icmenu.png"></view:MenuPage>
+        <view:ReservationPage
+            Title="Reservation"
+            IconImageSource="ictable.png"></view:ReservationPage>
 
-    <view:ServicePage Title="Services" IconImageSource="ictoast.png"></view:ServicePage>
-    <view:MorePage
-        Title="More" IconImageSource="icmore.png"></view:MorePage>
+        <view:ServicePage
+            Title="Services"
+            IconImageSource="ictoast.png"></view:ServicePage>
+        <view:MorePage
+            Title="More"
+            IconImageSource="icmore.png"></view:MorePage>
+    </TabbedPage.Children>
+ 
     
 </TabbedPage>

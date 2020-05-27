@@ -32,7 +32,7 @@
                             Source="back.png">
                             <Image.GestureRecognizers>
                                 <TapGestureRecognizer
-                                    Command="{Binding .}" />
+                                    Command="{Binding GoBack}" />
                             </Image.GestureRecognizers>
                         </Image>
 

@@ -17,18 +17,8 @@ namespace CafeHouse.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
 
-            var lblregisterTapper = new TapGestureRecognizer();
-            lblregisterTapper.Tapped += (s, e) =>
-             {
-                 Navigation.PushAsync(new RegisterPage());
-
-             };
-            lblRegister.GestureRecognizers.Add(lblregisterTapper);
         }
 
-        private void GradientButton_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new MainPage());
-        }
+      
     }
 }

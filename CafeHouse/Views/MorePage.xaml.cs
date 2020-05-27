@@ -16,7 +16,6 @@ namespace CafeHouse.Views
         public MorePage()
         {
             InitializeComponent();
-            BindingContext = new MoreItemViewModel();
         }
     }
 }

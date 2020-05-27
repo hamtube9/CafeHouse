@@ -5,16 +5,19 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    x:Name="MenuView"
     BackgroundColor="White"
     xmlns:btn="clr-namespace:CafeHouse.UI"
     xmlns:labelGradien="clr-namespace:CafeHouse.UI"
+    xmlns:model="clr-namespace:CafeHouse.Models"
     x:Class="CafeHouse.Views.MenuPage">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout
                 Orientation="Vertical"
                 HeightRequest="36">
-                <Grid VerticalOptions="Center">
+                <Grid
+                    VerticalOptions="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition
                             Height="36" />
@@ -36,92 +39,147 @@
                         Source="search.png"
                         VerticalOptions="Center"
                         HorizontalOptions="EndAndExpand"
-                        Grid.Row="0"
-                         />
+                        Grid.Row="0" />
                 </Grid>
-           
-              
+
+
             </StackLayout>
 
-            <StackLayout
-                HeightRequest="56">
-                <CollectionView
-                    BackgroundColor="#f8f8f8"
-                    ItemsLayout="HorizontalList"
-                    ItemsSource="{Binding Category}">
 
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <btn:GradientButton
-                                    Margin="8"
-                                    HeightRequest="28"
+            <CollectionView
+                HeightRequest="56"
+                BackgroundColor="#f8f8f8"
+                ItemsSource="{Binding Categories}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout
+                        Orientation="Horizontal"
+                        HorizontalItemSpacing="12" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid
+                                Margin="8,0,0,0"
+                                VerticalOptions="CenterAndExpand">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="32" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="120" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={Reference MenuView},Path=BindingContext.MenuItemCommand}"
+                                        CommandParameter="{Binding .}" />
+                                </Grid.GestureRecognizers>
+                                <Frame
+                                    Padding="0"
+                                    CornerRadius="24"
+                                    Grid.Column="0"
+                                    Grid.Row="0">
+                                    <labelGradien:GradientColorStack
+                                        StartColor="White"
+                                        EndColor="White">
+                                        <labelGradien:GradientColorStack.Triggers>
+                                            <DataTrigger
+                                                TargetType="labelGradien:GradientColorStack"
+                                                Binding="{Binding IsSelected}"
+                                                Value="True">
+                                                <Setter
+                                                    Property="StartColor"
+                                                    Value="#e838fb" />
+                                                <Setter
+                                                    Property="EndColor"
+                                                    Value="#6b42cf" />
+                                            </DataTrigger>
+                                        </labelGradien:GradientColorStack.Triggers>
+                                    </labelGradien:GradientColorStack>
+                                </Frame>
+
+                                <Label
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    HorizontalOptions="Center"
                                     VerticalOptions="CenterAndExpand"
-                                    StartColor="#dd3af9"
-                                    EndColor="#7640d4"
-                                    GradientOrientation="Horizontal"
-                                    WidthRequest="120"
-                                    Text="{Binding .}"
-                                    TextColor="White"
-                                    CornerRadius="12" />
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
+                                    TextColor="Black"
+                                    Text="{Binding NameCategory}">
+                                    <Label.Triggers>
+                                        <DataTrigger
+                                            TargetType="Label"
+                                            Binding="{Binding IsSelected}"
+                                            Value="True">
+                                            <Setter
+                                                Property="TextColor"
+                                                Value="White" />
+                                        </DataTrigger>
+                                    </Label.Triggers>
+                                </Label>
+
+                            </Grid>
+
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
 
-      
-            <ListView RowHeight="100"
+            <ListView
+                RowHeight="100"
                 ItemsSource="{Binding Menus}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                                <Grid Padding="8">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition
-                                            Height="*" />
-                                        <RowDefinition
-                                            Height="*" />
-                                        <RowDefinition
-                                            Height="*" />
+                            <Grid
+                                Padding="8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition
+                                        Height="*" />
+                                    <RowDefinition
+                                        Height="*" />
+                                    <RowDefinition
+                                        Height="*" />
                                     <RowDefinition
                                         Height="*" />
                                     <RowDefinition
                                         Height="*" />
                                 </Grid.RowDefinitions>
 
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition
-                                            Width="92" />
-                                        
-                                    </Grid.ColumnDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition
+                                        Width="92" />
 
-                                    <Frame
-                                        Margin="4"
-                                        Grid.Column="0"
-                                        Grid.Row="0"
-                                        Grid.RowSpan="5"
-                                        Padding="0"
-                                        CornerRadius="8">
-                                        <Image
-                                            HeightRequest="100"
-                                            Aspect="AspectFill"
-                                            WidthRequest="100"
-                                            Source="{Binding Image}" />
-                                    </Frame>
+                                </Grid.ColumnDefinitions>
+
+                                <Frame
+                                    Margin="4"
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="5"
+                                    Padding="0"
+                                    CornerRadius="8">
+                                    <Image
+                                        HeightRequest="100"
+                                        Aspect="AspectFill"
+                                        WidthRequest="100"
+                                        Source="{Binding Image}" />
+                                </Frame>
 
 
-                                <StackLayout Orientation="Vertical" Grid.Row="0"
-                                             Grid.Column="1"
-                                             Margin="4"
-                                             Grid.ColumnSpan="5">
+                                <StackLayout
+                                    Orientation="Vertical"
+                                    Grid.Row="0"
+                                    Grid.Column="1"
+                                    Margin="4"
+                                    Grid.ColumnSpan="5">
                                     <Label
                                         FontSize="14"
                                         VerticalOptions="Start"
                                         Text="{Binding Title}"
-                                        TextColor="Black"
-                                        />
+                                        TextColor="Black" />
 
 
 
@@ -134,13 +192,12 @@
                                     <Label
                                         VerticalOptions="End"
                                         Text="{Binding Des}"
-                                        FontSize="10"
-                                        />
+                                        FontSize="10" />
 
                                 </StackLayout>
-                                  
-                                </Grid>
-                            
+
+                            </Grid>
+
 
                         </ViewCell>
                     </DataTemplate>

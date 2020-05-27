@@ -1,47 +1,108 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             BackgroundColor="White"
-             xmlns:gradientButton="clr-namespace:CafeHouse.UI"
-             xmlns:labelGradient="clr-namespace:CafeHouse.UI"
-             xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             xmlns:transform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-             x:Class="CafeHouse.Views.ReservationPage">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    BackgroundColor="White"
+    x:Name="booking"
+    xmlns:gradientButton="clr-namespace:CafeHouse.UI"
+    xmlns:labelGradient="clr-namespace:CafeHouse.UI"
+    xmlns:ffimage="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:transform="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    x:Class="CafeHouse.Views.ReservationPage">
     <ContentPage.Content>
-        <ScrollView Orientation="Vertical">
+        <ScrollView
+            Orientation="Vertical">
             <StackLayout>
                 <Label
                     Text="Book Table"
-                    FontSize="24"
+                    FontSize="20"
+                    FontAttributes="Bold"
                     TextColor="Black"
                     HorizontalOptions="CenterAndExpand"
                     Padding="8" />
 
-                <Image
-                    Source="table.png" />
-
                 <StackLayout>
+                    <CarouselView
+                        HeightRequest="160"
+                        x:Name="carouselView"
+                        VerticalOptions="Center"
+                        HorizontalOptions="Center"
+                        BackgroundColor="LightGray"
+                        ItemsSource="{Binding Bookings}"
+                        PeekAreaInsets="80">
+                        <CarouselView.ItemsLayout>
+                            <LinearItemsLayout
+                                Orientation="Horizontal"
+                                ItemSpacing="6" />
+                        </CarouselView.ItemsLayout>
+                        <CarouselView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout
+                                    BindingContext="{Binding .}"
+                                    HeightRequest="160">
+                                    <Frame
+                                        Padding="0"
+                                        VerticalOptions="CenterAndExpand"
+                                        CornerRadius="12"
+                                        HeightRequest="120"
+                                        WidthRequest="120">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding Source={Reference booking},Path=BindingContext.SelectedTableCommand}"
+                                                CommandParameter="{Binding .}" />
+                                        </Frame.GestureRecognizers>
+                                        <Image
+                                            Source="{Binding ImageTable}"
+                                            Aspect="AspectFill" />
+
+                                        <Frame.Triggers>
+                                            <DataTrigger
+                                                TargetType="Frame"
+                                                Binding="{Binding IsSelected}"
+                                                Value="True">
+                                                <Setter
+                                                    Property="HeightRequest"
+                                                    Value="140" />
+                                                <Setter
+                                                    Property="WidthRequest"
+                                                    Value="140" />
+
+                                            </DataTrigger>
+                                        </Frame.Triggers>
+                                    </Frame>
+
+                                </StackLayout>
+                            </DataTemplate>
+                        </CarouselView.ItemTemplate>
+                    </CarouselView>
+                </StackLayout>
+
+
+
+                <StackLayout
+                    Padding="8,0,8,0">
 
                     <Grid
                         Margin="8">
                         <Grid.RowDefinitions>
                             <RowDefinition
-                                Height="24" />
+                                Height="28" />
                             <RowDefinition
-                                Height="24" />
+                                Height="28" />
                         </Grid.RowDefinitions>
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition
-                                Width="150" />
+                                Width="160" />
                         </Grid.ColumnDefinitions>
 
                         <Label
                             Grid.Row="0"
                             Grid.Column="0"
+                            FontSize="18"
                             Text="Number of Persons"
                             TextColor="#6541ce" />
 
@@ -52,12 +113,8 @@
                             Grid.Column="0">
                             <Label
                                 Text="6"
-                                FontSize="20"
+                                FontSize="22"
                                 TextColor="Black" />
-
-
-
-
 
                         </StackLayout>
 
@@ -70,8 +127,8 @@
                             HorizontalOptions="End">
 
                             <ffimage:CachedImage
-                                HeightRequest="24"
-                                WidthRequest="24"
+                                HeightRequest="28"
+                                WidthRequest="28"
                                 Source="minus.png">
                                 <ffimage:CachedImage.Transformations>
                                     <transform:CircleTransformation />
@@ -79,8 +136,8 @@
                             </ffimage:CachedImage>
 
                             <ffimage:CachedImage
-                                HeightRequest="24"
-                                WidthRequest="24"
+                                HeightRequest="28"
+                                WidthRequest="28"
                                 Source="plus.png">
                                 <ffimage:CachedImage.Transformations>
                                     <transform:CircleTransformation />
@@ -93,76 +150,133 @@
                 </StackLayout>
 
 
-                <Frame
-                    Padding="0"
-                    BorderColor="#cccccc">
-                    <StackLayout
-                        Padding="8"
-                        Orientation="Vertical">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition
-                                    Height="36" />
-                                <RowDefinition
-                                    Height="80" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition
-                                    Width="150" />
-                            </Grid.ColumnDefinitions>
 
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="0"
-                                VerticalOptions="Center"
-                                TextColor="#6541ce"
-                                Text="Pick a Date" />
+                <StackLayout
+                    Padding="8"
+                    Orientation="Vertical">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition
+                                Height="36" />
+                            <RowDefinition
+                                Height="80" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition
+                                Width="150" />
+                        </Grid.ColumnDefinitions>
 
-                            <Label
-                                Grid.Row="0"
-                                Grid.Column="1"
-                                TextColor="Black"
-                                HorizontalOptions="End"
-                                VerticalOptions="Center"
-                                Text="October 2017" />
+                        <Label
+                            Grid.Row="0"
+                            FontSize="18"
+                            Grid.Column="0"
+                            VerticalOptions="Center"
+                            TextColor="#6541ce"
+                            Text="Pick a Date" />
 
-                            <CollectionView
-                                ItemsLayout="HorizontalList"
-                                Grid.Row="1"
-                                Grid.Column="0"
-                                Grid.ColumnSpan="2"
-                                ItemsSource="{Binding Datetimes}">
-                                <CollectionView.ItemTemplate>
-                                    <DataTemplate>
+                        <Label
+                            Grid.Row="0"
+                            FontSize="16"
+                            Grid.Column="1"
+                            TextColor="Black"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
+                            Text=" October 2017" />
+
+                        <CollectionView
+                            ItemsLayout="HorizontalList"
+                            Grid.Row="1" 
+                            Grid.ColumnSpan="2"
+                            ItemsSource="{Binding Datetimes}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate> 
+                                    <Frame
+                                        Padding="1"
+                                        CornerRadius="12"
+                                        BorderColor="White"  
+                                        HasShadow="False"
+                                        Grid.Row="0">
+                                        <Frame.Triggers>
+                                            <DataTrigger
+                                                TargetType="Frame"
+                                                Binding="{Binding IsSelected}"
+                                                Value="True">
+                                                <Setter
+                                                    Property="BorderColor"
+                                                    Value="Black" /> 
+                                            </DataTrigger>
+
+                                        </Frame.Triggers>
+
                                         <StackLayout
-                                            HeightRequest="80"
+                                            Grid.Row="0"
+                                            Grid.Column="0" 
+                                            HorizontalOptions="Center" 
                                             WidthRequest="80">
+
                                             <labelGradient:GradientLabel
                                                 FontSize="20"
                                                 FontAttributes="Bold"
-                                                TextColor1="#dd3af9"
-                                                TextColor2="#7640d4"
+                                                TextColor1="Black"
+                                                TextColor2="Black"
+                                                VerticalOptions="Center"
                                                 HorizontalOptions="Center"
-                                                Text="{Binding DateOfMonth}" />
+                                                Text="{Binding DateOfMonth}">
+                                                <labelGradient:GradientLabel.Triggers>
+                                                    <DataTrigger
+                                                        TargetType="labelGradient:GradientLabel"
+                                                        Binding="{Binding IsSelected}"
+                                                        Value="True">
+                                                        <Setter
+                                                            Value="#dd3af9"
+                                                            Property="TextColor1" />
+                                                        <Setter
+                                                            Property="TextColor2"
+                                                            Value="#7640d4" />
+                                                    </DataTrigger>
+                                                </labelGradient:GradientLabel.Triggers>
+                                            </labelGradient:GradientLabel>
                                             <labelGradient:GradientLabel
-                                                TextColor1="#dd3af9"
-                                                TextColor2="#7640d4"
+                                                TextColor1="Black"
+                                                TextColor2="Black"
+                                                VerticalOptions="Center"
                                                 FontAttributes="Bold"
                                                 FontSize="20"
                                                 HorizontalOptions="Center"
-                                                Text="{Binding DayOfWeek}" />
+                                                Text="{Binding DayOfWeek}">
+                                                <labelGradient:GradientLabel.Triggers>
+                                                    <DataTrigger
+                                                        TargetType="labelGradient:GradientLabel"
+                                                        Binding="{Binding IsSelected}"
+                                                        Value="True">
+                                                        <Setter
+                                                            Value="#dd3af9"
+                                                            Property="TextColor1" />
+                                                        <Setter
+                                                            Value="#7640d4"
+                                                            Property="TextColor2" />
+                                                    </DataTrigger>
+                                                </labelGradient:GradientLabel.Triggers>
+                                            </labelGradient:GradientLabel>
                                         </StackLayout>
-                                    </DataTemplate>
-                                </CollectionView.ItemTemplate>
-                            </CollectionView>
-                        </Grid>
-                    </StackLayout>
-                </Frame>
+
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding Source={Reference booking}, Path=BindingContext.PickDayCommand}"
+                                                CommandParameter="{Binding .}" />
+                                        </Frame.GestureRecognizers>
+                                    </Frame> 
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </Grid>
+                </StackLayout>
 
 
                 <StackLayout
                     Orientation="Vertical">
                     <Label
+                        FontSize="18"
                         Text="Pick a Time"
                         TextColor="#6541ce"
                         Padding="8" />
@@ -190,11 +304,13 @@
                 </StackLayout>
 
 
-                <Frame Padding="0"
+                <Frame
+                    Padding="0"
                     BackgroundColor="#f8f8f8">
                     <gradientButton:GradientButton
                         Text="Comfirm Booking"
-                        Margin="48,8,48,8"
+                        Margin="48,8,48,16"
+                        Command="{Binding BookingCommand}"
                         TextColor="White"
                         GradientOrientation="Horizontal"
                         CornerRadius="2"
@@ -203,6 +319,6 @@
                 </Frame>
             </StackLayout>
         </ScrollView>
-       
+
     </ContentPage.Content>
 </ContentPage>

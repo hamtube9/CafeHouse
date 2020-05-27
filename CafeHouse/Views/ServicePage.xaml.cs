@@ -16,7 +16,6 @@ namespace CafeHouse.Views
         public ServicePage()
         {
             InitializeComponent();
-            BindingContext = new ServicesViewModel();
         }
     }
 }

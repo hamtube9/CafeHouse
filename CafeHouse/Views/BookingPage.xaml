@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:btnGradien="clr-namespace:CafeHouse.UI"
+             x:Class="CafeHouse.Views.BookingPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition
+                            Height="280" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition
+                            Width="160" />
+                    </Grid.ColumnDefinitions>
+                    <Image
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0"
+                        Aspect="AspectFill"
+                        
+                        Source="BookingTable.png" />
+                </Grid>
+
+
+                <Label
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    HorizontalOptions="Center"
+                    TextColor="Black"
+                    Text="Thanks You For Reservation!" />
+
+                <Label
+                    HorizontalOptions="Center"
+                    Margin="16,8,16,8"
+                    FontSize="16"
+                    HorizontalTextAlignment="Center"
+                    Text="Your booking has been confirmed for Monday 8 Oct, 2017 at 7:00 PM. You have booked 1 long table with 6 seats." />
+
+                <Frame
+                    HorizontalOptions="Center"
+                    Padding="0"
+                    BorderColor="Black"
+                    WidthRequest="240"
+                    CornerRadius="6">
+                    <Button
+                        BackgroundColor="White"
+                        Text="Book More Table" />
+                </Frame>
+
+                <btnGradien:GradientButton
+                    CornerRadius="2"
+                    Margin="0,16,0,24"
+                    HorizontalOptions="Center"
+                    Text="Go to Reservations"
+                    TextColor="White"
+                    HeightRequest="56"
+                    WidthRequest="240"
+                    BorderColor="#252525"
+                    StartColor="#dd3af9"
+                    EndColor="#7640d4" />
+
+
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

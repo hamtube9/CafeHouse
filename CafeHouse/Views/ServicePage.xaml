@@ -28,6 +28,7 @@
                         Grid.Column="0"
                         Grid.Row="0"
                         FontAttributes="Bold"
+                        FontSize="20"
                         TextColor="Black"
                         Grid.ColumnSpan="2" />
                     <Image

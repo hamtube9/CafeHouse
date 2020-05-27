@@ -1,28 +1,65 @@
 ﻿using CafeHouse.Models;
+using Prism.Commands;
+using Prism.Navigation;
+using Prism.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace CafeHouse.ViewModels
 {
-   public class OfferViewModel :BindableObject
+   public class OfferViewModel :ViewModelBase
     {
-
+        INavigationService navigation;
+        IPageDialogService dialog;
         private ObservableCollection<Offer> _offers;
-        public ObservableCollection<Offer> Offers { get { return _offers; } set { _offers = value; OnPropertyChanged(); } }
+        public ObservableCollection<Offer> Offers { get { return _offers; } set { SetProperty(ref _offers , value); } }
 
-        public ICommand BackPopupCommand => new Command(BackPopup);
+        public ICommand GoBack => new Command(BackPopup);
         private void BackPopup(object obj)
         {
-            var navigation = Application.Current.MainPage.Navigation;
-            navigation.PopAsync();
+            navigation.GoBackAsync();
         }
 
-        public OfferViewModel()
+        public ICommand OptionsStaffCommand => new DelegateCommand<Offer>(PickStaffCommand);
+
+       
+
+        private void PickStaffCommand(Offer obj)
         {
+            IActionSheetButton Used = ActionSheetButton.CreateButton("Use Offer", new DelegateCommand(() => { }));
+            IActionSheetButton Share = ActionSheetButton.CreateButton("Share Offer For Friend", new DelegateCommand<Offer>(ShareOffer));
+            IActionSheetButton Cancel = ActionSheetButton.CreateCancelButton("Cancel", new DelegateCommand(() => { }));
+            IActionSheetButton Delete = ActionSheetButton.CreateDestroyButton("Delete", new DelegateCommand(() => { }));
+
+            var title = obj.NameOffer;
+          dialog.DisplayActionSheetAsync("What do you want to do with : " + title, Cancel, Used, Share, Delete );
+            
+        }
+
+        private void ShareOffer(Offer obj)
+        {
+            ShareOfferToFriend(obj);
+        }
+
+        public async Task ShareOfferToFriend(Offer offer)
+        {
+            await Share.RequestAsync(new ShareTextRequest
+            {
+                Text = offer.NameOffer,
+                Title = "Shared Offer"
+            });
+        }
+
+        public OfferViewModel(INavigationService _navigation, IPageDialogService _dialog)
+        {
+            dialog = _dialog;
+            navigation = _navigation;
             Offers = new ObservableCollection<Offer>();
             Offers.Add(new Offer()
             {

@@ -17,7 +17,6 @@ namespace CafeHouse.Views
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
-            BindingContext = new ReviewsViewModel();
         }
     }
 }

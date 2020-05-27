@@ -20,15 +20,10 @@ namespace CafeHouse.Views
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
            
-            BindingContext = new MenuViewModel();
-         
-
         }
 
-        void OnCollectionViewSelected(object sender, SelectionChangedEventArgs e)
-        {
-                
-            
-        }
+
+
+     
     }
 }
